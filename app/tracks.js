@@ -9,6 +9,17 @@ const createRouter = () => {
         try {
             if(req.query.album) {
                 tracks = await Track.find({"album": req.query.album}).populate({path: 'album', populate: {path: 'artist'}});
+            } else if(req.query.artist) {
+                const tracksArtist = await Track.find().populate({
+                    path: 'album',
+                    match: {
+                        'artist': req.query.artist
+                    },
+                    populate: {
+                        path: 'artist'
+                    }
+                });
+                tracks = tracksArtist.filter(item => item.album !== null);
             } else {
                 tracks = await Track.find().populate({path: 'album', populate: {path: 'artist'}});
             }

@@ -23,9 +23,9 @@ const createRouter = () => {
         let albums;
         try {
             if(req.query.artist) {
-                albums = await Album.find({"artist": req.query.artist})
+                albums = await Album.find({"artist": req.query.artist}).sort({year: -1});
             } else {
-                albums = await Album.find();
+                albums = await Album.find().sort({year: -1});
             }
             res.send(albums);
         } catch (e) {

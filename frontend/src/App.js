@@ -1,10 +1,11 @@
 import React from "react";
 import './App.css';
+import ArtistsPage from "./containers/ArtistsPage/ArtistsPage";
 
 const App = () => {
   return (
     <div className="App">
-      <h1>Hello</h1>
+      <ArtistsPage />
     </div>
   );
 }

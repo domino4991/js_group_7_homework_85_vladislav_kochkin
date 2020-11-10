@@ -8,6 +8,7 @@ router.post('/', async (req, res) => {
     try {
         const user = await User.findOne({token});
         if(!user) return res.status(401).send({error: 'Wrong token!'});
+        req.body.user = user._id;
         const trackHistory = new TrackHistory(req.body);
         await trackHistory.save();
         return res.send(trackHistory);

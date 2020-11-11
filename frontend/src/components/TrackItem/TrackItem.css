@@ -1,0 +1,32 @@
+.Tracks-item {
+    display: flex;
+}
+
+.Tracks-item__img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    display: block;
+    margin-right: 30px;
+}
+
+.Tracks-item__text {
+    font-weight: bold;
+}
+
+.Tracks-item__text span {
+    font-weight: normal;
+}
+
+.Tracks-item__list {
+    list-style: none;
+    padding: 0;
+}
+
+.Tracks-item__list p {
+    font-weight: bold;
+}
+
+.Tracks-item__list-item {
+    margin-bottom: 10px;
+}

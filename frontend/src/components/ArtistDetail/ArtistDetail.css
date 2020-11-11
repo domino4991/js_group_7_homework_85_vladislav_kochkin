@@ -1,0 +1,9 @@
+.Artist-detail {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #4527a0;
+}
+
+.Artist-detail__name {
+    text-align: center;
+    text-transform: uppercase;
+}

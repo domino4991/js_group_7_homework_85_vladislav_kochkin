@@ -1,0 +1,28 @@
+.Header {
+    background: #4527a0;
+    color: #e8eaf6;
+    font-weight: bold;
+    padding: 10px 0;
+    margin-bottom: 30px;
+}
+
+.Header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Header__nav-list {
+    list-style: none;
+}
+
+.Header__nav-link {
+    text-decoration: none;
+    color: #e8eaf6;
+    transition: 0.5s;
+}
+
+.Header__nav-link:hover,
+.Header__nav-link.active {
+    color: #81c784;
+}

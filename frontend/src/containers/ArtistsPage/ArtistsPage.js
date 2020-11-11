@@ -13,11 +13,14 @@ const ArtistsPage = () => {
     }, [dispatch]);
 
     return (
-        <div>
-            <ArtistItems
-                artists={artists}
-            />
-        </div>
+        <section className="Artist-page">
+            <div className="container">
+                <h2 className="Artist-page__title">Исполнители</h2>
+                <ArtistItems
+                    artists={artists}
+                />
+            </div>
+        </section>
     );
 };
 

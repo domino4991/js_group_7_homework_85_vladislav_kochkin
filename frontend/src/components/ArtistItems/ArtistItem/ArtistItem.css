@@ -1,0 +1,16 @@
+.Artist-item {
+    width: 30%;
+    margin-right: 20px;
+    text-align: center;
+    box-shadow: 7px 7px 3px 2px rgba(69, 39, 160, 1);
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #311b92;
+}
+
+.Artist-item__img {
+    width: 100%;
+    height: auto;
+    display: block;
+}

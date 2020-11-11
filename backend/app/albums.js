@@ -4,6 +4,7 @@ const multer = require('multer');
 const {nanoid} = require('nanoid');
 const config = require('../config');
 const Album = require('../models/Albums');
+const Track = require('../models/Track');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -23,9 +24,18 @@ const createRouter = () => {
         let albums;
         try {
             if(req.query.artist) {
-                albums = await Album.find({"artist": req.query.artist}).sort({year: -1});
+                albums = await Album
+                    .find({"artist": req.query.artist})
+                    .sort({year: 1})
+                    .populate('artist')
+                    .lean();
+                for (let item of albums) {
+                    const tracks = await Track.find({'album': item._id});
+                    item.count = tracks.length;
+                }
+                return res.send(albums);
             } else {
-                albums = await Album.find().sort({year: -1});
+                albums = await Album.find().sort({year: 1});
             }
             res.send(albums);
         } catch (e) {

@@ -1,0 +1,19 @@
+.Album-item {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #263238;
+    margin-bottom: 30px;
+    box-shadow: 10px 10px 3px 1px rgba(49, 27, 146, 0.5);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.Album-item__img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    max-height: 300px;
+    margin-right: 50px;
+    display: block;
+}

@@ -24,7 +24,7 @@ const createRouter = () => {
             const artists = await Artist.find();
             res.send(artists);
         } catch (e) {
-            res.status(500).send(e);
+            res.status(500).send({error: e});
         }
     });
 

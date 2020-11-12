@@ -28,6 +28,9 @@ const run = async () => {
     app.use('/tracks', tracks());
     app.use('/users', users);
     app.use('/track_history', trackHistory);
+    app.use((req, res) => {
+        res.status(404).send({"error": "404 Not found"});
+    });
 
     app.listen(PORT, () => {
         console.log(`Server started at http://localhost:${PORT}`);

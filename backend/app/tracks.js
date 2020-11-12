@@ -34,7 +34,7 @@ const createRouter = () => {
             }
             res.send(tracks);
         } catch (e) {
-            res.status(500).send(e);
+            res.status(404).send({error: "404 Not Found"});
         }
     });
     router.post('/', async (req, res) => {

@@ -10,7 +10,11 @@ export const getTracks = query => {
             const response = await axiosBase.get(`/tracks${query}`);
             dispatch(getTracksSuccess(response.data));
         } catch (e) {
-            dispatch(getTracksError(e));
+            if(e.message === 'Network Error') {
+                dispatch(getTracksError(e.message));
+            } else {
+                dispatch(getTracksError(e.response.data.error));
+            }
         }
     };
 };

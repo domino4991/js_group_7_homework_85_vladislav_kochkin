@@ -10,7 +10,11 @@ export const getAlbums = query => {
             const response = await axiosBase.get(`/albums${query}`);
             dispatch(getAlbumsSuccess(response.data));
         } catch (e) {
-            dispatch(getAlbumsError(e));
+            if(e.message === 'Network Error') {
+                dispatch(getAlbumsError(e.message));
+            } else {
+                dispatch(getAlbumsError(e.response.data.error));
+            }
         }
     };
 }

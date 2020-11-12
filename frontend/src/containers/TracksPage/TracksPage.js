@@ -5,7 +5,7 @@ import TrackItem from "../../components/TrackItem/TrackItem";
 import './TracksPage.css';
 
 const TracksPage = props => {
-    const {tracks} = useSelector(state => state.tracks);
+    const {tracks, error} = useSelector(state => state.tracks);
     const dispatch = useDispatch();
     const query = props.location.search;
 
@@ -17,10 +17,10 @@ const TracksPage = props => {
         <section className="Tracks-page">
             <div className="container">
                 <h2 className="Tracks-page__title">Треки</h2>
-                {tracks &&
+                {!error ? tracks &&
                     <TrackItem
                         tracks={tracks}
-                    />
+                    /> : <p style={{textAlign: 'center'}}>{error}</p>
                 }
             </div>
         </section>

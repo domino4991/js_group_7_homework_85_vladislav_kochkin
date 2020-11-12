@@ -1,4 +1,4 @@
-import {GET_ARTISTS_SUCCESS} from "../actionTypes";
+import {GET_ARTISTS_ERROR, GET_ARTISTS_SUCCESS} from "../actionTypes";
 
 const initialState = {
     artists: null,
@@ -10,7 +10,13 @@ export const artistsReducer = (state = initialState, action) => {
         case GET_ARTISTS_SUCCESS:
             return {
                 ...state,
-                artists: action.data
+                artists: action.data,
+                error: null
+            };
+        case GET_ARTISTS_ERROR:
+            return {
+                ...state,
+                error: action.error
             };
         default:
             return state;

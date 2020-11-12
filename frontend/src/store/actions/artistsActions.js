@@ -10,7 +10,11 @@ export const getArtists = () => {
             const response = await axiosBase.get('/artists');
             dispatch(getArtistsSuccess(response.data));
         } catch (e) {
-            dispatch(getArtistsError(e));
+            if(e.message === 'Network Error') {
+                dispatch(getArtistsError(e.message));
+            } else {
+                dispatch(getArtistsError(e.response.data.error));
+            }
         }
     };
 }

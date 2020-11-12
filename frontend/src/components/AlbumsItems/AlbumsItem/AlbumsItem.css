@@ -4,11 +4,9 @@
     text-decoration: none;
     color: #263238;
     margin-bottom: 30px;
-    /*box-shadow: 10px 10px 3px 1px rgba(49, 27, 146, 0.5);*/
     border-radius: 5px;
     overflow: hidden;
     transition: 0.5s;
-    /*border: 1px solid rgba(49, 27, 146, 1);*/
 }
 
 .Album-item:hover {

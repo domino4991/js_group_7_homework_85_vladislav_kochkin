@@ -16,7 +16,7 @@ const ArtistsPage = () => {
         <section className="Artist-page">
             <div className="container">
                 <h2 className="Artist-page__title">Исполнители</h2>
-                {!error ? <ArtistItems
+                {!error ? artists && <ArtistItems
                     artists={artists}
                 /> : <p style={{textAlign: 'center'}}>{error}</p>}
             </div>

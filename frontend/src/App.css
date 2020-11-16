@@ -10,3 +10,10 @@
   margin: 0 auto;
   padding: 0 15px;
 }
+
+.Title-page {
+  text-align: center;
+  border-bottom: 1px solid #4527a0;
+  padding-bottom: 20px;
+  margin-bottom: 50px;
+}

@@ -19,13 +19,17 @@ const AlbumsPage = props => {
             <div className="container">
                 {!error ?
                     <>
-                        <ArtistDetail
-                            name={albums && albums[0].artist.name}
-                            info={albums && albums[0].artist.info}
-                        />
-                        <AlbumsItems
-                            albums={albums}
-                        />
+                        {albums &&
+                            <>
+                                <ArtistDetail
+                                name={albums && albums[0].artist.name}
+                                info={albums && albums[0].artist.info}
+                                />
+                                <AlbumsItems
+                                albums={albums}
+                                />
+                            </>
+                        }
                     </>
                     : <p style={{textAlign: 'center'}}>{error}</p>}
             </div>

@@ -19,6 +19,13 @@ const TrackHistorySchema = new Schema({
     }
 });
 
+TrackHistorySchema.set('toJSON', {
+    transform: (doc, ret, opt) => {
+        delete ret.user;
+        return ret;
+    }
+});
+
 const TrackHistory = mongoose.model('TrackHistory', TrackHistorySchema);
 
 module.exports = TrackHistory;

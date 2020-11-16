@@ -43,7 +43,7 @@ const createRouter = () => {
             await track.save();
             res.send(track);
         } catch (e) {
-            res.status(400).send(e);
+            res.status(400).send({error: 'Bad Request'})
         }
     });
 

@@ -8,7 +8,7 @@ router.post('/', async (req, res) => {
         await user.save();
         return res.send(user);
     } catch (e) {
-        return res.status(400).send({error: 'Bad Request'});
+        return res.status(400).send(e);
     }
 });
 

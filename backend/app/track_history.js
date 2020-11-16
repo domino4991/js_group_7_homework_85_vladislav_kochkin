@@ -1,16 +1,34 @@
 const router = require('express').Router();
 const TrackHistory = require('../models/TrackHistory');
-const User = require('../models/User');
+const auth = require('../auth');
 
-router.post('/', async (req, res) => {
-    const token = req.get('Authorization');
-    if(!token) return res.status(401).send({error: 'No token present'});
+router.post('/', auth, async (req, res) => {
     try {
-        const user = await User.findOne({token});
-        if(!user) return res.status(401).send({error: 'Wrong token!'});
-        req.body.user = user._id;
+        req.body.user = req.user._id;
+        req.body.datetime = new Date().toISOString();
         const trackHistory = new TrackHistory(req.body);
         await trackHistory.save();
+        return res.send(trackHistory);
+    } catch (e) {
+        return res.status(400).send({error: 'Bad request'});
+    }
+});
+
+router.get('/', auth, async (req, res) => {
+    try {
+        const trackHistory = await TrackHistory
+            .find({user: req.user._id})
+            .sort({datetime: -1})
+            .populate({
+                path: 'track',
+                populate: {
+                    path: 'album',
+                    populate: {
+                        path: 'artist'
+                    }
+                }
+            });
+        if(!trackHistory || trackHistory.length === 0) return res.status(404).send({error: '404 Not Found'});
         return res.send(trackHistory);
     } catch (e) {
         return res.status(400).send({error: 'Bad request'});

@@ -1,6 +1,7 @@
 import React from 'react';
 import './AlbumsItems.css';
 import AlbumsItem from "./AlbumsItem/AlbumsItem";
+import PropTypes from 'prop-types';
 
 const AlbumsItems = ({albums}) => {
     return (
@@ -16,6 +17,10 @@ const AlbumsItems = ({albums}) => {
             />)}
         </div>
     );
+};
+
+AlbumsItems.propTypes = {
+    albums: PropTypes.array.isRequired
 };
 
 export default AlbumsItems;

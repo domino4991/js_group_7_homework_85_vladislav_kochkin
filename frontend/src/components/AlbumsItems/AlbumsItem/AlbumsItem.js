@@ -2,6 +2,7 @@ import React from 'react';
 import './AlbumsItem.css';
 import {NavLink} from "react-router-dom";
 import {urlApi} from "../../../constants";
+import PropTypes from 'prop-types';
 
 const AlbumsItem = (
     {
@@ -32,6 +33,14 @@ const AlbumsItem = (
             </div>
         </NavLink>
     );
+};
+
+AlbumsItem.propTypes = {
+    id: PropTypes.string.isRequired,
+    albumCover: PropTypes.string.isRequired,
+    albumYear: PropTypes.number.isRequired,
+    albumName: PropTypes.string.isRequired,
+    trackCount: PropTypes.number.isRequired
 };
 
 export default AlbumsItem;

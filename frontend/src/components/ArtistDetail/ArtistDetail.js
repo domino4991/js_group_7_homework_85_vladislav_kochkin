@@ -1,5 +1,6 @@
 import React from 'react';
 import './ArtistDetail.css';
+import PropTypes from 'prop-types';
 
 const ArtistDetail = ({name, info}) => {
     return (
@@ -8,6 +9,11 @@ const ArtistDetail = ({name, info}) => {
             <p className="Artist-detail__info">{info}</p>
         </div>
     );
+};
+
+ArtistDetail.propTypes = {
+    name: PropTypes.string.isRequired,
+    info: PropTypes.string.isRequired
 };
 
 export default ArtistDetail;

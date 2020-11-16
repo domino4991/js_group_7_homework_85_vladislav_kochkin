@@ -1,6 +1,7 @@
 import React from 'react';
 import './ArtistItems.css';
 import ArtistsItem from "./ArtistItem/ArtistsItem";
+import PropTypes from 'prop-types';
 
 const ArtistItems = ({artists}) => {
     return (
@@ -13,6 +14,10 @@ const ArtistItems = ({artists}) => {
             />)}
         </div>
     );
+};
+
+ArtistItems.propTypes = {
+    artists: PropTypes.array.isRequired
 };
 
 export default ArtistItems;

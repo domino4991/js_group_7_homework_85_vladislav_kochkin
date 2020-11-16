@@ -1,9 +1,13 @@
 import React from 'react';
 import './TrackItem.css';
 import {urlApi} from "../../constants";
+import PropTypes from 'prop-types';
+import {useDispatch} from "react-redux";
+import {postTracks} from "../../store/actions/tracksActions";
 
 const TrackItem = ({tracks}) => {
     const path = urlApi + '/uploads/' + tracks[0].album.image;
+    const dispatch = useDispatch();
     return (
         <div className="Tracks-item">
             <div className="Tracks-item__box-img">
@@ -22,12 +26,22 @@ const TrackItem = ({tracks}) => {
                         key={item._id}
                         className="Tracks-item__list-item"
                     >
-                        {item.trackNumber}. {item.name} --- {item.duration}
+                        <button
+                            type="button"
+                            className="Tracks-item__list-btn"
+                            onClick={() => dispatch(postTracks(item._id))}
+                        >
+                            {item.trackNumber}. {item.name} --- {item.duration}
+                        </button>
                     </li>)}
                 </ul>
             </div>
         </div>
     );
+};
+
+TrackItem.propTypes = {
+    tracks: PropTypes.array.isRequired
 };
 
 export default TrackItem;

@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {getTracks} from "../../store/actions/tracksActions";
 import TrackItem from "../../components/TrackItem/TrackItem";
 import './TracksPage.css';
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const TracksPage = props => {
     const {tracks, error} = useSelector(state => state.tracks);
@@ -22,6 +24,7 @@ const TracksPage = props => {
                         tracks={tracks}
                     /> : <p style={{textAlign: 'center'}}>{error}</p>
                 }
+                <ToastContainer autoClose={2000} />
             </div>
         </section>
     );

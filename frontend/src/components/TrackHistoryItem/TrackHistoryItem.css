@@ -1,0 +1,15 @@
+.Track-history-item {
+    width: 32%;
+    box-shadow: 0 0 3px 1px rgba(81, 45, 168, 0.5);
+    margin-bottom: 30px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.Track-history-item__txt {
+    font-weight: bold;
+}
+
+.Track-history-item__txt span {
+    font-weight: normal;
+}

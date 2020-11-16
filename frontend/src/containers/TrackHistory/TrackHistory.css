@@ -1,0 +1,5 @@
+.Tracks-history-items {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}

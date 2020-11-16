@@ -24,13 +24,13 @@ const TrackHistory = () => {
             <div className="container">
                 <h3 className="Title-page">{user && user.username}, Ваша история прослушанных треков</h3>
                 {!error ? <div className="Tracks-history-items">
-                    {tracksHistory ? tracksHistory.map(item => <TrackHistoryItem
+                    {tracksHistory && tracksHistory.map(item => <TrackHistoryItem
                         key={item._id}
                         artistName={item.track.album.artist.name}
                         datetime={item.datetime}
                         trackName={item.track.name}
-                    />) : <p style={{textAlign: 'center'}}>Вы еще не прослушали ни одного трека</p>}
-                </div> : <p style={{textAlign: 'center'}}>{error}</p>}
+                    />)}
+                </div> : <p style={{textAlign: 'center'}}>{error !== '404 Not Found' ? error : 'Вы еще не прослушали ни одного трека'}</p>}
             </div>
         </section>
     );

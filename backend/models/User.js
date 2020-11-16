@@ -9,12 +9,19 @@ const SALT_WORK_FACTOR = 10;
 const UserSchema = new Schema({
     username: {
         type: String,
-        required: true,
-        unique: true
+        required: [true, 'Поле username обязательно для заполнения'],
+        unique: true,
+        validate: {
+            validator: async (value) => {
+                const user = await User.findOne({username: value});
+                if(user) return false;
+            },
+            message: "Такой пользователь уже существует"
+        }
     },
     password: {
         type: String,
-        required: true
+        required: [true, 'Поле password обязательно для заполнения']
     },
     token: {
         type: String,

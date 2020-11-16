@@ -8,21 +8,21 @@ router.post('/', async (req, res) => {
         await user.save();
         return res.send(user);
     } catch (e) {
-        return res.status(400).send(e);
+        return res.status(400).send({error: 'Bad Request'});
     }
 });
 
 router.post('/sessions', async (req, res) => {
     try {
         const user = await User.findOne({username: req.body.username});
-        if(!user) return req.status(400).send({error: 'Username not found'});
+        if(!user) return res.status(404).send({error: 'Username not found'});
         const isMatch = await user.checkPass(req.body.password);
         if(!isMatch) return res.status(400).send({error: 'Password is wrong'});
         user.genToken();
-        await user.save();
-        return res.send({token: user.token});
+        await user.save({validateBeforeSave: false});
+        return res.send({username: user.username, token: user.token});
     } catch (e) {
-        return res.status(400).send(e);
+        return res.status(400).send({error: 'Bad Request'});
     }
 });
 

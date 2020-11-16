@@ -1,0 +1,35 @@
+.DropDownMenu {
+    position: absolute;
+    top: 49px;
+    right: 0;
+    transform: scale(0);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    background: #fff;
+    box-shadow: 0 0 3px 1px rgba(0, 0,0, 0.5);
+    width: 230px;
+    padding: 20px 15px;
+}
+
+.DropDownMenu.active {
+    transform: scale(1);
+    visibility: visible;
+    opacity: 1;
+}
+
+.DropDownMenu__nav-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.DropDownMenu__nav-link {
+    text-decoration: none;
+    color: #263238;
+    transition: 0.5s;
+}
+
+.DropDownMenu__nav-link:hover {
+    color: #81c784;
+}

@@ -2,8 +2,9 @@
     background: #4527a0;
     color: #e8eaf6;
     font-weight: bold;
-    padding: 10px 0;
+    padding: 15px 0 0;
     margin-bottom: 30px;
+    position: relative;
 }
 
 .Header__inner {
@@ -14,15 +15,38 @@
 
 .Header__nav-list {
     list-style: none;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
 }
 
-.Header__nav-link {
+.Header__nav-item {
+    margin-left: 15px;
+}
+
+.Header__nav-link,
+.Header__dropdown-btn {
     text-decoration: none;
     color: #e8eaf6;
     transition: 0.5s;
+    padding-bottom: 15px;
+    display: block;
 }
 
 .Header__nav-link:hover,
+.Header__dropdown-btn:hover,
 .Header__nav-link.active {
     color: #81c784;
+}
+
+.Header__dropdown-btn {
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.Logo {
+    padding-bottom: 15px;
 }

@@ -19,6 +19,10 @@ const TrackSchema = new Schema({
     trackNumber: {
         type: Number,
         required: true
+    },
+    audioFile: {
+        type: String,
+        default: null
     }
 });
 

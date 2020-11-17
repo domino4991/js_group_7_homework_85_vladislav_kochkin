@@ -22,6 +22,7 @@
 
 .Header__nav-item {
     margin-left: 15px;
+    position: relative;
 }
 
 .Header__nav-link,
@@ -30,7 +31,8 @@
     color: #e8eaf6;
     transition: 0.5s;
     padding-bottom: 15px;
-    display: block;
+    display: flex;
+    align-items: center;
 }
 
 .Header__nav-link:hover,
@@ -45,6 +47,12 @@
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.Header__dropdown-btn svg,
+.Header__nav-link svg {
+    font-size: 20px;
+    margin: 0 10px;
 }
 
 .Logo {

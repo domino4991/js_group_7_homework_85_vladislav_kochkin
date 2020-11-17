@@ -3,6 +3,7 @@ import './Header.css';
 import {NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
 import DropDownMenu from "../UI/DropDownMenu/DropDownMenu";
+import {AiFillHome, AiOutlineMenu} from 'react-icons/ai';
 
 const Header = () => {
     const {user} = useSelector(state => state.users);
@@ -20,7 +21,7 @@ const Header = () => {
                                 exact
                                 className="Header__nav-link"
                             >
-                                Home
+                                <AiFillHome /> Home
                             </NavLink>
                         </li>
                             {
@@ -54,7 +55,7 @@ const Header = () => {
                                         onMouseEnter={() => setShow(true)}
                                         onMouseLeave={() => setShow(false)}
                                     >
-                                        Hello, {user.username}
+                                        <AiOutlineMenu /> Hello, {user.username}
                                         <DropDownMenu show={show} />
                                     </span>
                                 </li>

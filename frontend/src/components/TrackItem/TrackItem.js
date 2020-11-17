@@ -4,9 +4,12 @@ import {urlApi} from "../../constants";
 import PropTypes from 'prop-types';
 import {useDispatch} from "react-redux";
 import {postTracks} from "../../store/actions/tracksActions";
+import H5AudioPlayer from "react-h5-audio-player";
+import 'react-h5-audio-player/lib/styles.css';
 
 const TrackItem = ({tracks}) => {
     const path = urlApi + '/uploads/' + tracks[0].album.image;
+    const pathAudio = urlApi + '/uploads/audio/';
     const dispatch = useDispatch();
     return (
         <div className="Tracks-item">
@@ -25,14 +28,23 @@ const TrackItem = ({tracks}) => {
                     {tracks.map(item => <li
                         key={item._id}
                         className="Tracks-item__list-item"
+                        style={item.audioFile && {width: '400px'}}
                     >
-                        <button
-                            type="button"
-                            className="Tracks-item__list-btn"
-                            onClick={() => dispatch(postTracks(item._id))}
-                        >
-                            {item.trackNumber}. {item.name} --- {item.duration}
-                        </button>
+                        {!item.audioFile ?
+                            <button
+                                type="button"
+                                className="Tracks-item__list-btn"
+                                onClick={() => dispatch(postTracks(item._id))}
+                            >
+                                {item.trackNumber}. {item.name} --- {item.duration}
+                            </button>
+                            :
+                            <H5AudioPlayer
+                                src={pathAudio + item.audioFile}
+                                onPlay={() => dispatch(postTracks(item._id))}
+                                header={`${item.trackNumber}. ${item.name}`}
+                            />
+                        }
                     </li>)}
                 </ul>
             </div>

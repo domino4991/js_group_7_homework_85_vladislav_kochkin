@@ -1,4 +1,10 @@
-import {LOGIN_USER_ERROR, LOGIN_USER_SUCCESS, REGISTER_USER_ERROR, REGISTER_USER_SUCCESS} from "../actionTypes";
+import {
+    LOGIN_USER_ERROR,
+    LOGIN_USER_SUCCESS,
+    LOGOUT_USER,
+    REGISTER_USER_ERROR,
+    REGISTER_USER_SUCCESS
+} from "../actionTypes";
 import {axiosBase} from "../../axiosBase";
 import {push} from 'connected-react-router';
 
@@ -37,4 +43,22 @@ export const loginUser = userData => {
             }
         }
     }
-}
+};
+
+export const logoutUser = () => {
+    return async (dispatch, getState) => {
+        const token = getState().users.user && getState().users.user.token;
+        const headers = {'Authorization': token};
+        try {
+            await axiosBase.delete('/users/sessions', {headers});
+            dispatch({type: LOGOUT_USER});
+            dispatch(push('/'));
+        } catch (e) {
+            if(e.response && e.response.data) {
+                dispatch(loginUserError(e.response.data.error));
+            } else {
+                dispatch(loginUserError(e.message));
+            }
+        }
+    };
+};

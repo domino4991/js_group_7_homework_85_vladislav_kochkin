@@ -3,3 +3,11 @@
     justify-content: space-between;
     flex-wrap: wrap;
 }
+
+.Tracks-history-flex-start {
+    justify-content: flex-start;
+}
+
+.Tracks-history-flex-start .Track-history-item {
+    margin-right: 30px;
+}

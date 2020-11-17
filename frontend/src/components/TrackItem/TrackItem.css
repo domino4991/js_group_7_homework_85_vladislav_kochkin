@@ -2,12 +2,15 @@
     display: flex;
 }
 
+.Tracks-item__box-img {
+    margin-right: 30px;
+}
+
 .Tracks-item__img {
     width: 100%;
     max-width: 400px;
     height: auto;
     display: block;
-    margin-right: 30px;
 }
 
 .Tracks-item__text {

@@ -9,6 +9,7 @@ const TrackHistory = () => {
     const {tracksHistory, error} = useSelector(state => state.tracks);
     const {user} = useSelector(state => state.users);
     const dispatch = useDispatch();
+    const tracksHistoryItemsClasses = ['Tracks-history-items'];
 
     useEffect(() => {
         if(user) {
@@ -18,12 +19,15 @@ const TrackHistory = () => {
         }
     }, [dispatch, user]);
 
+    if(tracksHistory && tracksHistory.length < 3) {
+        tracksHistoryItemsClasses.push('Tracks-history-flex-start');
+    }
 
     return (
         <section className="Tracks-history">
             <div className="container">
                 <h3 className="Title-page">{user && user.username}, Ваша история прослушанных треков</h3>
-                {!error ? <div className="Tracks-history-items">
+                {!error ? <div className={tracksHistoryItemsClasses.join(' ')}>
                     {tracksHistory && tracksHistory.map(item => <TrackHistoryItem
                         key={item._id}
                         artistName={item.track.album.artist.name}

@@ -27,6 +27,7 @@ const createRouter = () => {
                     .find({"album": req.query.album})
                     .sort({trackNumber: 1})
                     .populate({path: 'album', populate: {path: 'artist'}});
+                if(tracks.length === 0) return res.status(404).send({error: 'В данный альбом не было добавлено ни одного трека'});
             } else if(req.query.artist) {
                 const tracksArtist = await Track
                     .find()
@@ -41,11 +42,13 @@ const createRouter = () => {
                     }
                 });
                 tracks = tracksArtist.filter(item => item.album !== null);
+                if(tracksArtist.length === 0) return res.status(404).send({error: 'Треков по данному исполнителю не найдено'});
             } else {
                 tracks = await Track
                     .find()
                     .sort({trackNumber: 1})
                     .populate({path: 'album', populate: {path: 'artist'}});
+                if(tracks.length === 0) return res.status(404).send({error: 'Не было добавленно ни одного трека'});
             }
             res.send(tracks);
         } catch (e) {

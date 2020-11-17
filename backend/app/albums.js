@@ -29,6 +29,7 @@ const createRouter = () => {
                     .sort({year: 1})
                     .populate('artist')
                     .lean();
+                if(albums.length === 0) return res.status(404).send({error: 'Альбомы данного исполнителя не найдены'});
                 for (let item of albums) {
                     const tracks = await Track.find({'album': item._id});
                     item.count = tracks.length;

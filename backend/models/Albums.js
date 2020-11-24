@@ -20,6 +20,11 @@ const AlbumSchema = new Schema({
         ref: "Artist",
         required: true
     },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     isPublished: {
         type: Boolean,
         default: false,

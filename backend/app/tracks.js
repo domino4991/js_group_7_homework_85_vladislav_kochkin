@@ -26,9 +26,10 @@ const createRouter = () => {
         try {
             if(req.query.album) {
                 tracks = await Track
-                    .find({"album": req.query.album})
-                    .sort({trackNumber: 1})
-                    .populate({path: 'album', populate: {path: 'artist'}});
+                    .find({"album": req.query.album, isPublished: true})
+                    .populate('user', 'username -_id')
+                    .populate({path: 'album', populate: {path: 'artist'}})
+                    .sort({trackNumber: 1});
                 if(tracks.length === 0) return res.status(404).send({error: 'В данный альбом не было добавлено ни одного трека'});
             } else if(req.query.artist) {
                 const tracksArtist = await Track

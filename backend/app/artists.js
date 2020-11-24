@@ -22,8 +22,23 @@ const router = express.Router();
 
 const createRouter = () => {
     router.get('/', async (req, res) => {
+        const token = await req.get('Authorization');
+        let artists;
         try {
-            const artists = await Artist.find({isPublished: true}).populate('user', 'username -_id');
+            if(token) {
+                artists = await Artist
+                    .find()
+                    .populate({
+                        path: 'user',
+                        match: {
+                            token: token
+                        },
+                        select: 'username -_id'
+                    });
+                artists.filter(item => item.user !== null);
+            } else {
+                artists = await Artist.find({isPublished: true}).populate('user', 'username -_id');
+            }
             res.send(artists);
         } catch (e) {
             res.status(500).send({error: e});
@@ -31,7 +46,12 @@ const createRouter = () => {
     });
 
     router.post('/', [auth, permit('admin', 'user'), upload.single('image')], async (req, res) => {
-        const artists = new Artist(req.body);
+        const artists = new Artist({
+            name: req.body.name,
+            image: req.body.image,
+            info: req.body.info,
+            user: req.user._id
+        });
         if(req.file) {
             artists.image = req.file.filename;
         }

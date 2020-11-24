@@ -1,5 +1,4 @@
 import React from 'react';
-import './Form.css';
 import PropTypes from 'prop-types';
 
 const Form = ({username, password, onChanged, btnLabel, onSubmitted, getFieldError}) => {

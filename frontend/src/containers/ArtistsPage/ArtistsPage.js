@@ -6,6 +6,7 @@ import ArtistItems from "../../components/ArtistItems/ArtistItems";
 
 const ArtistsPage = () => {
     const {artists, error} = useSelector(state => state.artists);
+    const {user} = useSelector(state => state.users);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -17,6 +18,7 @@ const ArtistsPage = () => {
             <div className="container">
                 <h2 className="Artist-page__title">Исполнители</h2>
                 {!error ? artists && <ArtistItems
+                    user={user}
                     artists={artists}
                 /> : <p style={{textAlign: 'center'}}>{error}</p>}
             </div>

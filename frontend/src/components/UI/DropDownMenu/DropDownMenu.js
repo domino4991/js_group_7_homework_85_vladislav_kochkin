@@ -22,6 +22,30 @@ const DropDownMenu = ({show}) => {
                         </NavLink>
                     </li>
                     <li className="DropDownMenu__nav-item">
+                        <NavLink
+                            to='/add-new-artist'
+                            className="DropDownMenu__nav-link"
+                        >
+                            Добавить нового исполнителя
+                        </NavLink>
+                    </li>
+                    <li className="DropDownMenu__nav-item">
+                        <NavLink
+                            to='/add-new-album'
+                            className="DropDownMenu__nav-link"
+                        >
+                            Добавить новый альбом
+                        </NavLink>
+                    </li>
+                    <li className="DropDownMenu__nav-item">
+                        <NavLink
+                            to='/add-new-track'
+                            className="DropDownMenu__nav-link"
+                        >
+                            Добавить новый трек
+                        </NavLink>
+                    </li>
+                    <li className="DropDownMenu__nav-item">
                         <button
                             className="DropDownMenu__nav-link"
                             onClick={() => dispatch(logoutUser())}

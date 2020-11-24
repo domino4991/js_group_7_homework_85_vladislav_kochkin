@@ -5,7 +5,7 @@ import {
     REGISTER_USER_ERROR,
     REGISTER_USER_SUCCESS
 } from "../actionTypes";
-import {axiosBase} from "../../axiosBase";
+import axiosBase from "../../axiosBase";
 import {push} from 'connected-react-router';
 
 const registerUserSuccess = () => ({type: REGISTER_USER_SUCCESS});

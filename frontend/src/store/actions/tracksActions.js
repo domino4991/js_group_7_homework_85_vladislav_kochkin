@@ -6,7 +6,7 @@ import {
     POST_TRACKS_ERROR,
     POST_TRACKS_SUCCESS
 } from "../actionTypes";
-import {axiosBase} from "../../axiosBase";
+import axiosBase from "../../axiosBase";
 import {push} from 'connected-react-router';
 import {toast} from "react-toastify";
 

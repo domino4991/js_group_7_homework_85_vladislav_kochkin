@@ -1,5 +1,5 @@
 import {GET_ALBUMS_ERROR, GET_ALBUMS_SUCCESS} from "../actionTypes";
-import {axiosBase} from "../../axiosBase";
+import axiosBase from "../../axiosBase";
 
 const getAlbumsSuccess = data => ({type: GET_ALBUMS_SUCCESS, data});
 const getAlbumsError = error => ({type: GET_ALBUMS_ERROR, error});

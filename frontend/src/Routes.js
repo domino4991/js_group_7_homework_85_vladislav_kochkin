@@ -7,8 +7,8 @@ import TracksPage from "./containers/TracksPage/TracksPage";
 import Register from "./containers/Register/Register";
 import Login from "./containers/Login/Login";
 import TrackHistory from "./containers/TrackHistory/TrackHistory";
-import PropTypes from 'prop-types';
 import CreateNewArtist from "./containers/CreateNewArtist/CreateNewArtist";
+import CreateNewAlbum from "./containers/CreateNewAlbum/CreateNewAlbum";
 
 const ProtectedRoute = ({isAllowed, redirectTo, ...props}) => {
     return isAllowed ?
@@ -51,14 +51,17 @@ const Routes = ({user}) => {
                     isAllowed={user}
                     redirectTo='/'
                 />
+                <ProtectedRoute
+                    path='/add-new-album'
+                    exact
+                    component={CreateNewAlbum}
+                    isAllowed={user}
+                    redirectTo='/'
+                />
                 <Route render={() => <h1 style={{textAlign: 'center'}}>404 not found</h1>} />
             </Switch>
         </Layout>
     );
-};
-
-Routes.propTypes = {
-    user: PropTypes.any.isRequired
 };
 
 export default Routes;

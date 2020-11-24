@@ -1,4 +1,4 @@
-import {GET_ALBUMS_ERROR, GET_ALBUMS_SUCCESS} from "../actionTypes";
+import {GET_ALBUMS_ERROR, GET_ALBUMS_SUCCESS, POST_ALBUMS_ERROR, POST_ALBUMS_SUCCESS} from "../actionTypes";
 
 const initialState = {
     albums: null,
@@ -13,7 +13,13 @@ export const albumsReducer = (state = initialState, action) => {
                 albums: action.data,
                 error: null
             };
+        case POST_ALBUMS_SUCCESS:
+            return {
+                ...state,
+                error: null
+            };
         case GET_ALBUMS_ERROR:
+        case POST_ALBUMS_ERROR:
             return {
                 ...state,
                 error: action.error

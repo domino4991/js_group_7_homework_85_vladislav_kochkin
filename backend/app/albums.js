@@ -3,6 +3,8 @@ const path = require('path');
 const multer = require('multer');
 const {nanoid} = require('nanoid');
 const config = require('../config');
+const auth = require('../middleware/auth');
+const permit = require('../middleware/permit');
 const Album = require('../models/Albums');
 const Track = require('../models/Track');
 
@@ -53,7 +55,7 @@ const createRouter = () => {
         }
     });
 
-    router.post('/', upload.single('image'), async (req, res) => {
+    router.post('/', [auth, permit('admin'), upload.single('image')], async (req, res) => {
         const albums = new Album(req.body);
         if(req.file) {
             albums.image = req.file.filename;

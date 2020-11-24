@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const TrackHistory = require('../models/TrackHistory');
-const auth = require('../auth');
+const auth = require('../middleware/auth');
 
 router.post('/', auth, async (req, res) => {
     try {

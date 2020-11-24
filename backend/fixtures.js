@@ -21,13 +21,27 @@ db.once('open', async () => {
         console.log(e);
     }
     try {
+        const [john, domino] = await User.create({
+            username: 'John',
+            password: 'testpass',
+            role: 'user',
+            token: nanoid()
+        }, {
+            username: 'Domino',
+            password: 'testpass',
+            role: 'admin',
+            token: nanoid()
+        });
         const [architects, inThisMoment] = await Artist.create({
             name: 'Architects',
             image: '9Y2xNEIGPKRAhJTfTnu7x.jpg',
+            user: john,
+            isPublished: true,
             info: 'Architects — (в переводе с англ. — «Архитекторы») британская металкор-группа. Была сформирована в 2004 году в Брайтоне, Великобритания. За время своего существования коллектив несколько раз изменял своё название — InHarmonic, затем Counting the Days. Несколько лет так они и именовались, а затем изменили название на нынешнее. Группа известна своим агрессивным и эмоциональным вокалом, переплетающимся с динамичными гитарными партиями. За карьеру выпущено 7 полноформатных и один мини-альбом.'
         }, {
             name: 'In This Moment',
             image: 'IlhkYUR1Uf_OAiB7GhjuP.jpg',
+            user: domino,
             info: 'In This Moment — американская группа, образованная в Лос-Анджелесе вокалисткой Марией Бринк и гитаристом Крисом Хоувортом в 2005 году.[6]. Также к группе присоединился барабанщик Джефф Фабб. В начале творческого пути трио выступало под именем Dying Star. Недовольная своим музыкальным стилем, группа полностью изменила звучание, и сменила название на In This Moment и также добавила двух участников - гитариста Блэйка Бунзела и басиста Доша Ньюэлла. В 2005 году Ньюэлл ушёл из группы и был заменён Паскалем Ромеро, которого позже заменит Джесси Лэндри.Дебютный альбом, Beautiful Tragedy, был выпущен в 2007 году. Следующее творение под названием The Dream был издан в следующем году и дебютировал на 73 строчке Billboard 200. Третий альбом группы под названием A Star-Crossed Wasteland был выпущен в 2010. Четвёртый альбом под названием Blood был выпущен в августе 2012 года и дебютировал на 15 строчке Billboard 200. Пятый альбом под названием Black Widow был выпущен 17 ноября 2014 года и дебютировал на 8 строчке американских чартов (что является наивысшей позицией в чартах на сегодняшний день). Шестой альбом под названием Ritual был выпущен летом 2017 и дебютировал на 23 строчке.'
         });
         const [holyHell, allOurGodsHaveAbandonedUs, blood] = await Album.create({
@@ -95,6 +109,7 @@ db.once('open', async () => {
             name: 'Doomsday',
             duration: '4:08',
             trackNumber: 10,
+            audioFile: 'ZvIr6NYLj2Yp-WZOptxji.mp3',
             album: holyHell
         }, {
             name: 'A Wasted Hymn',
@@ -227,15 +242,6 @@ db.once('open', async () => {
             duration: '4:51',
             trackNumber: 14,
             album: blood
-        });
-        await User.create({
-            username: 'John',
-            password: 'testpass',
-            token: nanoid()
-        }, {
-            username: 'Domino',
-            password: 'testpass',
-            token: nanoid()
         });
     } catch (e) {
         console.log(e);

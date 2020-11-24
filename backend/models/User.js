@@ -23,6 +23,12 @@ const UserSchema = new Schema({
         type: String,
         required: [true, 'Поле password обязательно для заполнения']
     },
+    role: {
+        type: String,
+        required: true,
+        default: 'user',
+        enum: ['user', 'admin']
+    },
     token: {
         type: String,
         required: true

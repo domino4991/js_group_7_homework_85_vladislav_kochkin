@@ -4,6 +4,8 @@ const path = require('path');
 const multer = require('multer');
 const {nanoid} = require('nanoid');
 const config = require('../config');
+const auth = require('../middleware/auth');
+const permit = require('../middleware/permit');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -55,7 +57,7 @@ const createRouter = () => {
             res.status(404).send({error: "404 Not Found"});
         }
     });
-    router.post('/', upload.single('audioFile'), async (req, res) => {
+    router.post('/', [auth, permit('admin'), upload.single('audioFile')], async (req, res) => {
         const track = new Track(req.body);
         if(req.file) {
             track.audioFile = req.file.filename;

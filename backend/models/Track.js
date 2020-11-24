@@ -23,6 +23,11 @@ const TrackSchema = new Schema({
     audioFile: {
         type: String,
         default: null
+    },
+    isPublished: {
+        type: Boolean,
+        default: false,
+        required: true
     }
 });
 

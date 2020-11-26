@@ -27,9 +27,12 @@ const createRouter = () => {
             if(req.query.album) {
                 tracks = await Track
                     .find({"album": req.query.album, isPublished: true})
-                    .populate('user', 'username -_id')
-                    .populate({path: 'album', populate: {path: 'artist'}})
-                    .sort({trackNumber: 1});
+                    .sort({trackNumber: 1})
+                    .populate({
+                        path: 'album',
+                        populate: {path: 'artist'}
+                    })
+                    .populate('user', 'username -_id');
                 if(tracks.length === 0) return res.status(404).send({error: 'В данный альбом не было добавлено ни одного трека'});
             } else if(req.query.artist) {
                 const tracksArtist = await Track
@@ -58,16 +61,78 @@ const createRouter = () => {
             res.status(404).send({error: "404 Not Found"});
         }
     });
-    router.post('/', [auth, permit('admin'), upload.single('audioFile')], async (req, res) => {
-        const track = new Track(req.body);
+
+    router.get('/users', [auth, permit('user')], async (req, res) => {
+        let tracks;
+        try {
+            const usersTracks = await Track
+                .find()
+                .populate({
+                    path: 'user',
+                    match: {
+                        _id: req.user._id
+                    },
+                    select: 'username -_id'
+                }).lean();
+            tracks = usersTracks.filter(item => item.user !== null);
+            if(tracks.length === 0) return res.status(404).send({error: 'Нет треков'});
+            return res.send(tracks);
+        } catch (e) {
+            return res.status(500).send(e);
+        }
+    });
+
+    router.get('/admin', [auth, permit('admin')], async (req, res) => {
+        try {
+            const tracks = await Track.find().populate('user', 'username -_id');
+            if(tracks.length === 0) return res.status(404).send({error: 'Треков нет'});
+            return res.send(tracks);
+        } catch (e) {
+            return res.status(500).send(e);
+        }
+    });
+
+    router.post('/', [auth, permit('admin', 'user'), upload.single('audioFile')], async (req, res) => {
+        const track = new Track({
+            name: req.body.name,
+            duration: req.body.duration,
+            trackNumber: Number(req.body.trackNumber),
+            album: req.body.album,
+            user: req.user._id
+        });
         if(req.file) {
             track.audioFile = req.file.filename;
         }
         try {
             await track.save();
-            res.send(track);
+            res.send({message: `Трек ${track.name} будет добавлен после модерации.`});
         } catch (e) {
             res.status(400).send({error: 'Bad Request'})
+        }
+    });
+
+    router.delete('/:id', [auth, permit('admin')], async (req, res) => {
+        try {
+            const track = await Track.findById(req.params.id);
+            if(!track) return res.status(404).send({error: 'Трек не найден'});
+            await Track.deleteOne({_id: track._id});
+            return res.send({message: `Трек ${track.name} удалён`});
+        } catch (e) {
+            return res.status(500).send(e);
+        }
+    });
+
+    router.put('/:id/publish', [auth, permit('admin')], async (req, res) => {
+        try {
+            const track = await Track.findOneAndUpdate({_id: req.params.id}, req.body);
+            if(!track) return res.status(404).send({error: 'Трек не найден'});
+            if(req.body.isPublished) {
+                return res.send({message: `Трек ${track.name} опубликован`});
+            } else {
+                return res.send({message: `Трек ${track.name} снят в публикации`});
+            }
+        } catch (e) {
+            return res.status(500).send(e);
         }
     });
 

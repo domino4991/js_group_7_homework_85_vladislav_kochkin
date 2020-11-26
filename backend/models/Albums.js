@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Track = require('./Track');
 
 const Schema = mongoose.Schema;
 
@@ -30,6 +31,27 @@ const AlbumSchema = new Schema({
         default: false,
         required: true
     }
+});
+
+AlbumSchema.pre('deleteMany', async function (next) {
+    if(this._conditions.artist) {
+        const id = this._conditions.artist;
+        const albums = await Album.find({artist: id});
+        for (const albumItem of albums) {
+            const tracks = await Track.find({album: albumItem});
+            if(!tracks) return next();
+            await Track.deleteMany({album: albumItem._id});
+        }
+    }
+    next();
+});
+
+AlbumSchema.pre('deleteOne', async function (next) {
+    const id = this._conditions._id;
+    const tracks = await Track.find({album: id});
+    if(!tracks) return next();
+    await Track.deleteMany({album: id});
+    next();
 });
 
 const Album = mongoose.model('Album', AlbumSchema);

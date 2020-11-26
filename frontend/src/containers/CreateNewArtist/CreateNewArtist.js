@@ -6,7 +6,7 @@ import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 const CreateNewArtist = () => {
-    const {error} = useSelector(state => state.artists);
+    const {artistsError} = useSelector(state => state.artists);
 
     const [newArtist, setNewArtist] = useState({
         name: '',
@@ -36,7 +36,7 @@ const CreateNewArtist = () => {
 
     const getFieldError = fieldName => {
         try {
-            return error.errors[fieldName].message;
+            return artistsError.errors[fieldName].message;
         } catch (e) {
             return null;
         }

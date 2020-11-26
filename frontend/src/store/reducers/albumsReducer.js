@@ -1,8 +1,15 @@
-import {GET_ALBUMS_ERROR, GET_ALBUMS_SUCCESS, POST_ALBUMS_ERROR, POST_ALBUMS_SUCCESS} from "../actionTypes";
+import {
+    DELETE_ALBUM_ERROR, DELETE_ALBUM_SUCCESS,
+    GET_ALBUMS_ERROR,
+    GET_ALBUMS_SUCCESS,
+    POST_ALBUMS_ERROR,
+    POST_ALBUMS_SUCCESS,
+    PUBLISH_ALBUM_ERROR, PUBLISH_ALBUM_SUCCESS
+} from "../actionTypes";
 
 const initialState = {
     albums: null,
-    error: null
+    albumsError: null
 };
 
 export const albumsReducer = (state = initialState, action) => {
@@ -11,18 +18,22 @@ export const albumsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 albums: action.data,
-                error: null
+                albumsError: null
             };
         case POST_ALBUMS_SUCCESS:
+        case PUBLISH_ALBUM_SUCCESS:
+        case DELETE_ALBUM_SUCCESS:
             return {
                 ...state,
-                error: null
+                albumsError: null
             };
         case GET_ALBUMS_ERROR:
         case POST_ALBUMS_ERROR:
+        case PUBLISH_ALBUM_ERROR:
+        case DELETE_ALBUM_ERROR:
             return {
                 ...state,
-                error: action.error
+                albumsError: action.error
             };
         default:
             return state;

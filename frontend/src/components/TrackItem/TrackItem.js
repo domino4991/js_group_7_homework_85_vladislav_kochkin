@@ -11,6 +11,9 @@ const TrackItem = ({tracks}) => {
     const path = urlApi + '/uploads/' + tracks[0].album.image;
     const pathAudio = urlApi + '/uploads/audio/';
     const dispatch = useDispatch();
+
+    if(!tracks[0].album.artist) return null;
+
     return (
         <div className="Tracks-item">
             <div className="Tracks-item__box-img">
@@ -27,8 +30,7 @@ const TrackItem = ({tracks}) => {
                     <p>Треклист: </p>
                     {tracks.map(item => <li
                         key={item._id}
-                        className="Tracks-item__list-item"
-                        style={item.audioFile && {width: '400px'}}
+                        className={item.audioFile ? "Tracks-item__list-item audioFile" : "Tracks-item__list-item"}
                     >
                         {!item.audioFile ?
                             <button

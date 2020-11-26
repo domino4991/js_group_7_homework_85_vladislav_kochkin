@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {getArtists} from "../../store/actions/artistsActions";
+import {getFormArtists} from "../../store/actions/artistsActions";
 import {postNewAlbum} from "../../store/actions/albumsActions";
 import AlbumForm from "../../components/UI/AlbumForm/AlbumForm";
 import {ToastContainer} from "react-toastify";
@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const CreateNewAlbum = () => {
     const {artists} = useSelector(state => state.artists);
-    const {error} = useSelector(state => state.albums);
+    const {albumsError} = useSelector(state => state.albums);
     const dispatch = useDispatch();
     const [newAlbum, setNewAlbum] = useState({
         name: '',
@@ -18,7 +18,7 @@ const CreateNewAlbum = () => {
     });
 
     useEffect(() => {
-        dispatch(getArtists());
+        dispatch(getFormArtists());
     }, [dispatch]);
 
     const onChangedField = e => {
@@ -56,7 +56,7 @@ const CreateNewAlbum = () => {
 
     const getFieldError = fieldName => {
         try {
-            return error.errors[fieldName].message;
+            return albumsError.errors[fieldName].message;
         } catch (e) {
             return null;
         }
@@ -65,7 +65,7 @@ const CreateNewAlbum = () => {
     return (
         <section className="Create-new-album-page">
             <h2 className="Title-page">Добавление нового альбома</h2>
-            {!error ? <AlbumForm
+            {!albumsError ? <AlbumForm
                 changedFile={e => onChangedFile(e)}
                 year={newAlbum.year}
                 submitted={e => onSubmittedForm(e)}

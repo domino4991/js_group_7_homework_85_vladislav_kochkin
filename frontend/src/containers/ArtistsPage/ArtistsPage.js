@@ -5,8 +5,7 @@ import {getArtists} from "../../store/actions/artistsActions";
 import ArtistItems from "../../components/ArtistItems/ArtistItems";
 
 const ArtistsPage = () => {
-    const {artists, error} = useSelector(state => state.artists);
-    const {user} = useSelector(state => state.users);
+    const {artists, artistsError} = useSelector(state => state.artists);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -17,10 +16,9 @@ const ArtistsPage = () => {
         <section className="Artist-page">
             <div className="container">
                 <h2 className="Artist-page__title">Исполнители</h2>
-                {!error ? artists && <ArtistItems
-                    user={user}
+                {!artistsError ? artists && <ArtistItems
                     artists={artists}
-                /> : <p style={{textAlign: 'center'}}>{error}</p>}
+                /> : <p style={{textAlign: 'center'}}>{artistsError}</p>}
             </div>
         </section>
     );

@@ -7,7 +7,7 @@ import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 const TracksPage = props => {
-    const {tracks, error} = useSelector(state => state.tracks);
+    const {tracks, tracksError} = useSelector(state => state.tracks);
     const dispatch = useDispatch();
     const query = props.location.search;
 
@@ -19,10 +19,10 @@ const TracksPage = props => {
         <section className="Tracks-page">
             <div className="container">
                 <h2 className="Tracks-page__title">Треки</h2>
-                {!error ? tracks &&
+                {!tracksError ? tracks &&
                     <TrackItem
                         tracks={tracks}
-                    /> : <p style={{textAlign: 'center'}}>{error}</p>
+                    /> : <p style={{textAlign: 'center'}}>{tracksError}</p>
                 }
                 <ToastContainer autoClose={2000} />
             </div>

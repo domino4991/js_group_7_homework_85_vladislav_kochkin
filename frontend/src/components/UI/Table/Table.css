@@ -1,0 +1,47 @@
+.Table {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    width: 100%;
+    background: #263238;
+    color: #eceff1;
+}
+
+.Table__title {
+    text-align: center;
+}
+
+.Table__titles,
+.Table__titles th {
+    border: 1px solid #000;
+    background: #37474f;
+}
+
+.Table__cells,
+.Table__cells td {
+    border: 1px solid #000;
+}
+
+.Table__cells td,
+.Table__titles th {
+    text-align: center;
+    padding: 15px;
+}
+
+.Table__cells:nth-child(2n) {
+    background: #455a64;
+}
+
+.Table__btn-publish,
+.Table__btn-delete {
+    border: none;
+    background: #4b908f;
+    color: #e8eaf6;
+    padding: 10px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.Table__btn-delete {
+    background: #c62828;
+}

@@ -6,7 +6,7 @@ import AlbumsItems from "../../components/AlbumsItems/AlbumsItems";
 import ArtistDetail from "../../components/ArtistDetail/ArtistDetail";
 
 const AlbumsPage = props => {
-    const {albums, error} = useSelector(state => state.albums);
+    const {albums, albumsError} = useSelector(state => state.albums);
     const dispatch = useDispatch();
     const query = props.location.search;
 
@@ -17,7 +17,7 @@ const AlbumsPage = props => {
     return (
         <section className="Albums-page">
             <div className="container">
-                {!error ?
+                {!albumsError ?
                     <>
                         {albums &&
                             <>
@@ -31,7 +31,7 @@ const AlbumsPage = props => {
                             </>
                         }
                     </>
-                    : <p style={{textAlign: 'center'}}>{error}</p>}
+                    : <p style={{textAlign: 'center'}}>{albumsError}</p>}
             </div>
         </section>
     );

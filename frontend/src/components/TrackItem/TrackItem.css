@@ -30,6 +30,10 @@
     font-weight: bold;
 }
 
+.audioFile {
+    width: 400px;
+}
+
 .Tracks-item__list-item {
     margin-bottom: 10px;
 }

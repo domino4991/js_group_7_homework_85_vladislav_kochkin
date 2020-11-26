@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const ArtistItems = ({artists}) => {
     return (
         <div className="Artist-items">
-            {artists && artists.map(item => item.isPublished && <ArtistsItem
+            {artists && artists.map(item => <ArtistsItem
                 key={item._id}
                 name={item.name}
                 image={item.image}

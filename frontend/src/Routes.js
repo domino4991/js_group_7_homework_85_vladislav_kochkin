@@ -9,6 +9,9 @@ import Login from "./containers/Login/Login";
 import TrackHistory from "./containers/TrackHistory/TrackHistory";
 import CreateNewArtist from "./containers/CreateNewArtist/CreateNewArtist";
 import CreateNewAlbum from "./containers/CreateNewAlbum/CreateNewAlbum";
+import CreateNewTrack from "./containers/CreateNewTrack/CreateNewTrack";
+import AdminPage from "./containers/AdminPage/AdminPage";
+import UserProfile from "./containers/UserProfile/UserProfile";
 
 const ProtectedRoute = ({isAllowed, redirectTo, ...props}) => {
     return isAllowed ?
@@ -56,6 +59,27 @@ const Routes = ({user}) => {
                     exact
                     component={CreateNewAlbum}
                     isAllowed={user}
+                    redirectTo='/'
+                />
+                <ProtectedRoute
+                    path='/add-new-track'
+                    exact
+                    component={CreateNewTrack}
+                    isAllowed={user}
+                    redirectTo='/'
+                />
+                <ProtectedRoute
+                    path='/admin'
+                    exact
+                    component={AdminPage}
+                    isAllowed={user && user.role === 'admin'}
+                    redirectTo='/'
+                />
+                <ProtectedRoute
+                    path='/profile'
+                    exact
+                    component={UserProfile}
+                    isAllowed={user && user.role === 'user'}
                     redirectTo='/'
                 />
                 <Route render={() => <h1 style={{textAlign: 'center'}}>404 not found</h1>} />

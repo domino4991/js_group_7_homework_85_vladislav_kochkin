@@ -32,7 +32,16 @@ const UserSchema = new Schema({
     token: {
         type: String,
         required: true
-    }
+    },
+    displayName: {
+        type: String,
+        required: [true, 'Поле "Имя" обязательно для заполнения']
+    },
+    avatar: {
+        type: String,
+        default: null
+    },
+    facebookId: String
 });
 
 UserSchema.pre('save', async function (next) {

@@ -7,7 +7,7 @@ import './Login.css';
 const Login = () => {
     const [user, setUser] = useState({
         username: '',
-        password: ''
+        password: '',
     });
 
     const {error} = useSelector(state => state.users);
@@ -47,6 +47,7 @@ const Login = () => {
                     username={user.username}
                     password={user.password}
                     onChanged={e => onFieldsChange(e)}
+                    register={false}
                 />
             </div>
         </section>

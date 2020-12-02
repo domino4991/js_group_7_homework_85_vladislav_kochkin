@@ -8,7 +8,9 @@ const Register = () => {
 
     const [user, setUser] = useState({
         username: '',
-        password: ''
+        password: '',
+        displayName: '',
+        avatar: ''
     });
 
     const dispatch = useDispatch();
@@ -22,9 +24,22 @@ const Register = () => {
         }));
     };
 
+    const onChangeFile = e => {
+        const name = e.target.name;
+        const file = e.target.files[0];
+        setUser(prevState => ({
+            ...prevState,
+            [name]: file
+        }));
+    };
+
     const onSubmittedForm = (e) => {
         e.preventDefault();
-        dispatch(registerUser({...user}));
+        const formData = new FormData();
+        Object.keys(user).forEach(key => {
+            formData.append(key, user[key]);
+        });
+        dispatch(registerUser(formData));
     };
 
     const getFieldError = fieldName => {
@@ -44,8 +59,10 @@ const Register = () => {
                     btnLabel="Sign up"
                     onSubmitted={(e) => onSubmittedForm(e)}
                     onChanged={e => onFieldsChange(e)}
+                    onChangeFile={e => onChangeFile(e)}
                     username={user.username}
                     getFieldError={getFieldError}
+                    register={true}
                 />
             </div>
         </section>

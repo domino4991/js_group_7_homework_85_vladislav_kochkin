@@ -35,6 +35,12 @@ export const albumsReducer = (state = initialState, action) => {
                 ...state,
                 albumsError: action.error
             };
+        case 'CLEAR_ALBUMS':
+            return {
+                ...state,
+                albums: [],
+                albumsError: null
+            }
         default:
             return state;
     }

@@ -4,10 +4,21 @@ import {NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
 import DropDownMenu from "../UI/DropDownMenu/DropDownMenu";
 import {AiFillHome, AiOutlineMenu} from 'react-icons/ai';
+import {urlApi} from "../../constants";
 
 const Header = () => {
     const {user} = useSelector(state => state.users);
     const [show, setShow] = useState(false);
+    let path;
+    if(user) {
+        if(user.avatar !== null && user.avatar.includes('https')) {
+            path = user.avatar;
+        } else {
+            path = urlApi + '/uploads/' + user.avatar;
+        }
+    } else {
+        path = null;
+    }
 
     return (
         <header className="Header">
@@ -50,14 +61,19 @@ const Header = () => {
                                 <li
                                     className="Header__nav-item"
                                 >
-                                    <span
+                                    <div
                                         className="Header__dropdown-btn"
                                         onMouseEnter={() => setShow(true)}
                                         onMouseLeave={() => setShow(false)}
                                     >
-                                        <AiOutlineMenu /> Hello, {user.username}
+                                        {user.avatar && <img
+                                            src={path}
+                                            alt={user.displayName}
+                                            className='Header__dropdown__avatar'
+                                        />}
+                                        <p className="Header__dropdown__user">{user.displayName}</p>
                                         <DropDownMenu show={show} />
-                                    </span>
+                                    </div>
                                 </li>
                             }
                     </ul>

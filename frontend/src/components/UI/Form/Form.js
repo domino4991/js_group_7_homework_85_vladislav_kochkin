@@ -1,7 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FacebookLogin from "../../FacebookLogin/FacebookLogin";
 
-const Form = ({username, password, onChanged, btnLabel, onSubmitted, getFieldError}) => {
+const Form = ({
+    username,
+    password,
+    onChanged,
+    btnLabel,
+    onSubmitted,
+    getFieldError,
+    displayName,
+    onChangeFile,
+    register
+}) => {
     return (
         <form className="Form" onSubmit={onSubmitted}>
             <input
@@ -40,7 +51,48 @@ const Form = ({username, password, onChanged, btnLabel, onSubmitted, getFieldErr
                     className="Form__error-label"
                 >{getFieldError('password')}</label>
             }
+            {register ?
+                <>
+                    <input
+                        type="text"
+                        name="displayName"
+                        value={displayName}
+                        onChange={onChanged}
+                        className="Form__fields"
+                        placeholder="Enter your Name"
+                        id="displayName"
+                        required
+                    />
+                    {
+                        getFieldError('displayName')
+                        &&
+                        <label
+                            htmlFor="displayName"
+                            className="Form__error-label"
+                        >{getFieldError('displayName')}</label>
+                    }
+                    <input
+                        type="file"
+                        name="avatar"
+                        onChange={onChangeFile}
+                        className="Form__fields"
+                        placeholder="Enter your avatar"
+                        id="avatar"
+                        required
+                    />
+                    {
+                        getFieldError('avatar')
+                        &&
+                        <label
+                            htmlFor="avatar"
+                            className="Form__error-label"
+                        >{getFieldError('avatar')}</label>
+                    }
+                </> : null
+            }
             <button type="submit" className="Form__btn">{btnLabel}</button>
+            <p style={{marginBottom: '0px'}}>Or sign in with facebook</p>
+            <FacebookLogin btnLabel='Login with facebook' />
         </form>
     );
 };

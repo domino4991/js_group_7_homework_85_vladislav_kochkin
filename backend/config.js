@@ -12,5 +12,7 @@ module.exports = {
         useUnifiedTopology: true,
         useCreateIndex: true,
         useFindAndModify: false
-    }
+    },
+    facebookAccess: '1273260783048980',
+    facebookSecret: 'e18ead93612ab25b6955b0bbb4afbf69'
 };

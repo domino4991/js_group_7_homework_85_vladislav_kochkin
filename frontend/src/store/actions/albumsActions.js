@@ -41,6 +41,7 @@ export const getFormAlbums = query => {
             dispatch(getAlbumsSuccess(response.data));
         } catch (e) {
             if(e.response && e.response.data) {
+                dispatch({type: 'CLEAR_ALBUMS'});
                 dispatch(getAlbumsError(e.response.data.error));
             } else {
                 dispatch(getAlbumsError(e.message));

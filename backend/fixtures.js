@@ -24,11 +24,13 @@ db.once('open', async () => {
         const [john, domino] = await User.create({
             username: 'John',
             password: 'testpass',
+            displayName: 'John Doe',
             role: 'user',
             token: nanoid()
         }, {
             username: 'Domino',
             password: 'testpass',
+            displayName: 'Domino',
             role: 'admin',
             token: nanoid()
         });

@@ -26,7 +26,7 @@ const TrackHistory = () => {
     return (
         <section className="Tracks-history">
             <div className="container">
-                <h3 className="Title-page">{user && user.username}, Ваша история прослушанных треков</h3>
+                <h3 className="Title-page">{user && user.displayName}, Ваша история прослушанных треков</h3>
                 {!tracksError ? <div className={tracksHistoryItemsClasses.join(' ')}>
                     {tracksHistory && tracksHistory.map(item => <TrackHistoryItem
                         key={item._id}

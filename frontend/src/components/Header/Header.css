@@ -17,6 +17,7 @@
     list-style: none;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 0;
 }
 
@@ -53,6 +54,17 @@
 .Header__nav-link svg {
     font-size: 20px;
     margin: 0 10px;
+}
+
+.Header__dropdown__user {
+    margin: 0;
+}
+
+.Header__dropdown__avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
 }
 
 .Logo {

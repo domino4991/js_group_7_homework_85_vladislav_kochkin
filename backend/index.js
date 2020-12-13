@@ -9,7 +9,7 @@ const trackHistory = require('./app/track_history');
 const config = require('./config');
 
 const app = express();
-const PORT = 8000;
+let PORT = process.env.NODE_ENV === 'test' ? 8010 : 8000;
 
 app.use(express.json());
 app.use(cors());

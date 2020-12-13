@@ -2,11 +2,19 @@ const path = require('path');
 
 const rootPath = __dirname;
 
+let dbName;
+
+if(process.env.NODE_ENV === 'test') {
+    dbName = 'musicApp_test';
+} else {
+    dbName = 'musicApp';
+}
+
 module.exports = {
     rootPath,
     uploadPath: path.join(rootPath, 'public/uploads'),
     audioUploadPath: path.join(rootPath, 'public/uploads/audio'),
-    database: "mongodb://localhost/musicApp",
+    database: `mongodb://localhost/${dbName}`,
     databaseOpt: {
         useNewUrlParser: true,
         useUnifiedTopology: true,

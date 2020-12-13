@@ -84,7 +84,7 @@ const AlbumForm = ({
                     {artist.name}
                 </option>)}
             </select>
-            <button type="submit" className="Form__btn">Create</button>
+            <button type="submit" className="Form__btn" id='formBtn'>Create</button>
         </form>
     );
 };

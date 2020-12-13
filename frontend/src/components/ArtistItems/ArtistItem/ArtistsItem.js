@@ -10,6 +10,7 @@ const ArtistsItem = ({name, image, id}) => {
         <NavLink
             to={`/albums?artist=${id}`}
             className='Artist-item'
+            id="linkTest"
         >
             <div className="Artist-item__content">
                 {image && <div className="Artist-item__box-img">

@@ -18,6 +18,7 @@ const AlbumsItem = (
         <NavLink
             to={`/tracks?album=${id}`}
             className="Album-item"
+            id='linkAlbumTest'
         >
             <div className="Album-item__box-img">
                 <img

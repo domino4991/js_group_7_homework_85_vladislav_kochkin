@@ -90,7 +90,7 @@ const Form = ({
                     }
                 </> : null
             }
-            <button type="submit" className="Form__btn">{btnLabel}</button>
+            <button type="submit" className="Form__btn" id="formBtn">{btnLabel}</button>
             <p style={{marginBottom: '0px'}}>Or sign in with facebook</p>
             <FacebookLogin btnLabel='Login with facebook' />
         </form>

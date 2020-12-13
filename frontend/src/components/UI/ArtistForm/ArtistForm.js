@@ -65,7 +65,7 @@ const ArtistForm = ({
                     className="Form__error-label"
                 >{getFieldError('image')}</label>
             }
-            <button type="submit" className="Form__btn">Create</button>
+            <button type="submit" className="Form__btn" id='formBtn'>Create</button>
         </form>
     );
 };

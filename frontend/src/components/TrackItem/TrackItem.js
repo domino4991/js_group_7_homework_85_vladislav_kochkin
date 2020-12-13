@@ -37,6 +37,7 @@ const TrackItem = ({tracks}) => {
                                 type="button"
                                 className="Tracks-item__list-btn"
                                 onClick={() => dispatch(postTracks(item._id))}
+                                id="testBtn"
                             >
                                 {item.trackNumber}. {item.name} --- {item.duration}
                             </button>

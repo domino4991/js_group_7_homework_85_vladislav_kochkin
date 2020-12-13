@@ -3,7 +3,7 @@ import './Header.css';
 import {NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
 import DropDownMenu from "../UI/DropDownMenu/DropDownMenu";
-import {AiFillHome, AiOutlineMenu} from 'react-icons/ai';
+import {AiFillHome} from 'react-icons/ai';
 import {urlApi} from "../../constants";
 
 const Header = () => {
@@ -71,7 +71,7 @@ const Header = () => {
                                             alt={user.displayName}
                                             className='Header__dropdown__avatar'
                                         />}
-                                        <p className="Header__dropdown__user">{user.displayName}</p>
+                                        <p className="Header__dropdown__user" id='userDisplayName'>{user.displayName}</p>
                                         <DropDownMenu show={show} />
                                     </div>
                                 </li>

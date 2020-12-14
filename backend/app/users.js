@@ -27,7 +27,6 @@ router.post('/', upload.single('avatar'), async (req, res) => {
         if(req.file) {
             user.avatar = req.file.filename;
         }
-        console.log(user.avatar);
         user.genToken();
         await user.save();
         return res.send(user);
@@ -72,9 +71,9 @@ router.delete('/sessions', async (req, res) => {
 });
 
 router.post('/facebookLogin', async (req, res) => {
-    // const inputToken = req.body.accessToken;
+    const inputToken = req.body.accessToken;
     const accessToken = config.facebookAccess + '|' + config.facebookSecret;
-    const debugToken = `https://graph.facebook.com/debug_token?input_token=${req.body.accessToken}&access_token=${accessToken}`;
+    const debugToken = `https://graph.facebook.com/debug_token?input_token=${inputToken}&access_token=${accessToken}`;
     try {
         const response = await axios.get(debugToken);
         if(response.data.data.error) {
@@ -98,7 +97,6 @@ router.post('/facebookLogin', async (req, res) => {
         await user.save({validateBeforeSave: false});
         return res.send(user);
     } catch (e) {
-        console.log(e);
         return res.status(401).send({error: 'Facebook token incorrect'});
     }
 });

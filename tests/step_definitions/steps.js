@@ -19,14 +19,12 @@ When('я нажимаю на кнопку {string}', (button) => {
 });
 
 Then('я перехожу на страницу создания {string} {string}', (value, path) => {
-    I.amOnPage(path);
-});
-
-Then('я перехожу на главную страницу {string}', (path) => {
+    I.waitForElement('#userDisplayName', 20);
     I.amOnPage(path);
 });
 
 When(`я нажимаю на ссылку {string}`, (link) => {
+    I.waitForElement('#userDisplayName', 20);
     I.click({id: link});
 });
 

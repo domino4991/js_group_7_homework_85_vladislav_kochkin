@@ -10,14 +10,14 @@ import {
 import axiosBase from "../../axiosBase";
 import {toast} from "react-toastify";
 
-const getArtistsSuccess = data => ({type: GET_ARTISTS_SUCCESS, data});
-const getArtistsError = error => ({type: GET_ARTISTS_ERROR, error});
-const postNewArtistSuccess = () => ({type: POST_NEW_ARTISTS_SUCCESS});
-const postNewArtistError = error => ({type: POST_NEW_ARTISTS_ERROR, error});
-const publishArtistSuccess = () => ({type: PUBLISH_ARTIST_SUCCESS});
-const publishArtistError = error => ({type: PUBLISH_ARTIST_ERROR, error});
-const deleteArtistSuccess = () => ({type: DELETE_ARTIST_SUCCESS});
-const deleteArtistError = error => ({type: DELETE_ARTIST_ERROR, error});
+export const getArtistsSuccess = data => ({type: GET_ARTISTS_SUCCESS, data});
+export const getArtistsError = error => ({type: GET_ARTISTS_ERROR, error});
+export const postNewArtistSuccess = () => ({type: POST_NEW_ARTISTS_SUCCESS});
+export const postNewArtistError = error => ({type: POST_NEW_ARTISTS_ERROR, error});
+export const publishArtistSuccess = () => ({type: PUBLISH_ARTIST_SUCCESS});
+export const publishArtistError = error => ({type: PUBLISH_ARTIST_ERROR, error});
+export const deleteArtistSuccess = () => ({type: DELETE_ARTIST_SUCCESS});
+export const deleteArtistError = error => ({type: DELETE_ARTIST_ERROR, error});
 
 export const getArtists = () => {
     return async dispatch => {

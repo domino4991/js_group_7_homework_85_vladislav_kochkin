@@ -7,7 +7,7 @@ import {
     PUBLISH_ARTIST_ERROR, PUBLISH_ARTIST_SUCCESS
 } from "../actionTypes";
 
-const initialState = {
+export const initialState = {
     artists: null,
     artistsError: null
 };
